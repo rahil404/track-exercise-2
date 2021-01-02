@@ -24,6 +24,13 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
+// API routes
+const exercisesRouter = require('./routes/exercises')
+const userRouter = require('./routes/users')
+
+app.use('/api/exercises', exercisesRouter)
+app.use('/api/users', userRouter)
+
 // Handler for client build
 if (process.env.NODE_ENV === 'production') {  
     app.use(express.static(path.join(__dirname, "client/build")));
@@ -31,12 +38,6 @@ if (process.env.NODE_ENV === 'production') {
      res.sendFile(path.join(__dirname, "client/build", "index.html"));
     });
 }
-
-const exercisesRouter = require('./routes/exercises')
-const userRouter = require('./routes/users')
-
-app.use('/api/exercises', exercisesRouter)
-app.use('/api/users', userRouter)
 
 
 // Start app
