@@ -24,7 +24,7 @@ export default class ExercisesList extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/exercises')
+    axios.get('/api/exercises/getex')
       .then(response => {
         console.log(response);
         this.setState({ exercises: response.data })
